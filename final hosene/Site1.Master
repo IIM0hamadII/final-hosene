@@ -1,0 +1,116 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="final_hosene.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>sign in</title>
+    <style>
+body {
+direction: rtl;
+background-color: #f8eebb;
+width: auto;
+font-size: 18pt;
+margin-left: 50px;
+margin-right:50px;
+}
+.mpHeader
+{
+width: 100%; 
+height: 30px;
+text-align:center;
+border: 1px solid silver;
+}
+.mpMenu{
+text-align:center;
+font-size: 14pt;
+height:20px;
+width:100%;
+border: 1px solid silver;
+}
+.mpMain
+{
+height:400px; 
+width:100%;
+border: 1px solid silver;
+}
+.mpTable
+{
+border: 1px solid silver;
+width: 100%;
+}
+.mpH1 { text-align: center; color: red;}
+        .mpP {
+            text-align: center;
+        }
+     
+   .clock{text-align: center; color: #0f7d28;}   
+</style>
+<script>
+function myTimer() {
+
+var d = new Date();
+var t1 = d.toLocaleDateString(); // التاريخ
+var t2 = d.toLocaleTimeString(); // الساعة
+var t = t1 + "<br />" + t2;
+document.getElementById("myClock").innerHTML = t;
+}
+setInterval("myTimer()", 1000); 
+</script>
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+    <body>
+<table class="userTb1" >
+<tr class="mpHeader" id="Top" >
+<td style="width:15%; text-align: center; border: 1px solid silver;">
+    <%= loginMsg %>
+
+
+    </td>
+<td style="width: 70%; border: 1px solid silver;">
+ <h1 Imp="class"> formula one</h1>
+    </td>
+<td style="width: 15%;border: 1px solid silver;">
+<h3 class="clock" id="myClock"></h3>
+</td>
+</tr>
+<tr>
+<td class="mpMenu" colspan="3">
+   [ <a href="main.aspx">formula 1</a>]
+    <% if (Session["uName"].ToString() != "guest"){  %>
+   [<a href="TimeTable.aspx"> time table</a>]
+    <a href="the%20hisrory%20of%20formula%20one.aspx">the hisrory of formula one</a>
+    <%} %>
+  
+    [<a href="adminLogin.aspx">AdminLogin</a>]
+
+    </td>
+</tr>
+<tr>
+    <td class="mpMain" colspan="3">
+
+     
+
+       
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+       </td>
+</tr>
+<tr class="mpMenu"> 
+<td style="width:15%;"></td>
+<td style="width: 70%;">
+ <a href="mailTo:hamoudy1221h@gmail.com"> built by mohamad hosene</a>
+    <td style="width: 15%;text-align:center; direction: ltr;"> 
+        people that logged in: <%= Application["counter"] %>;
+       
+    </td>
+
+    </tr>
+</table>
+   
+</body>
+</html>
